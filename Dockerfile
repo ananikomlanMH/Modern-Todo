@@ -35,6 +35,7 @@ COPY --from=frontend /app/public/build ./public/build
 
 # Installation des dépendances PHP
 RUN composer install --no-interaction --no-dev --optimize-autoloader
+RUN composer require laravel/pail --dev
 
 # Configuration des permissions
 RUN chown -R www-data:www-data /var/www/html/storage /var/www/html/bootstrap/cache
@@ -42,4 +43,4 @@ RUN chown -R www-data:www-data /var/www/html/storage /var/www/html/bootstrap/cac
 # Exposition du port
 EXPOSE 9000
 
-CMD ["php-fpm"] 
+CMD ["php-fpm"]

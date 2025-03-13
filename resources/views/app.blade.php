@@ -4,6 +4,27 @@
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
 
+        <meta name="title" content="Todo App - Gérez vos tâches efficacement">
+        <meta name="description" content="Application de gestion de tâches moderne construite avec Laravel et React">
+
+        <!-- Open Graph / Facebook -->
+        <meta property="og:type" content="website">
+        <meta property="og:url" content="{{ config('app.url') }}">
+        <meta property="og:title" content="Todo App - Gérez vos tâches efficacement">
+        <meta property="og:description" content="Application de gestion de tâches moderne construite avec Laravel et React">
+        <meta property="og:image" content="{{ asset('assets/images/logo-full.svg') }}">
+
+        <!-- Twitter -->
+        <meta property="twitter:card" content="summary_large_image">
+        <meta property="twitter:url" content="{{ config('app.url') }}">
+        <meta property="twitter:title" content="Todo App - Gérez vos tâches efficacement">
+        <meta property="twitter:description" content="Application de gestion de tâches moderne construite avec Laravel et React">
+        <meta property="twitter:image" content="{{ asset('assets/images/logo-full.svg') }}">
+
+        <!-- Favicon -->
+        <link rel="icon" type="image/svg+xml" href="{{ asset('assets/images/logo-full.svg') }}">
+        <link rel="apple-touch-icon" href="{{ asset('assets/images/logo-full.svg') }}">
+
         {{-- Inline script to detect system dark mode preference and apply it immediately --}}
         <script>
             (function() {
@@ -34,6 +55,7 @@
 
         <link rel="preconnect" href="https://fonts.bunny.net">
         <link href="https://fonts.bunny.net/css?family=instrument-sans:400,500,600" rel="stylesheet" />
+
 
         @routes
         @vite(['resources/js/app.ts'])
