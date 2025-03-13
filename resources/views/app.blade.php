@@ -5,21 +5,21 @@
         <meta name="viewport" content="width=device-width, initial-scale=1">
 
         <meta name="title" content="Todo App - Gérez vos tâches efficacement">
-        <meta name="description" content="Application de gestion de tâches moderne construite avec Laravel et React">
+        <meta name="description" content="Application de gestion de tâches moderne construite avec Laravel">
 
         <!-- Open Graph / Facebook -->
         <meta property="og:type" content="website">
         <meta property="og:url" content="{{ config('app.url') }}">
         <meta property="og:title" content="Todo App - Gérez vos tâches efficacement">
-        <meta property="og:description" content="Application de gestion de tâches moderne construite avec Laravel et React">
-        <meta property="og:image" content="{{ asset('assets/images/logo-full.svg') }}">
+        <meta property="og:description" content="Application de gestion de tâches moderne construite avec Laravel">
+        <meta property="og:image" content="{{ asset('assets/images/banner.png') }}">
 
         <!-- Twitter -->
         <meta property="twitter:card" content="summary_large_image">
         <meta property="twitter:url" content="{{ config('app.url') }}">
         <meta property="twitter:title" content="Todo App - Gérez vos tâches efficacement">
-        <meta property="twitter:description" content="Application de gestion de tâches moderne construite avec Laravel et React">
-        <meta property="twitter:image" content="{{ asset('assets/images/logo-full.svg') }}">
+        <meta property="twitter:description" content="Application de gestion de tâches moderne construite avec Laravel">
+        <meta property="twitter:image" content="{{ asset('assets/images/banner.png') }}">
 
         <!-- Favicon -->
         <link rel="icon" type="image/svg+xml" href="{{ asset('assets/images/logo.svg') }}">
