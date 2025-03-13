@@ -1,10 +1,7 @@
-FROM php:8.3-fpm
+# Étape 1: Application PHP
+FROM php:8.2-fpm
 
-# Arguments defined in docker-compose.yml
-ARG PUID=1000
-ARG PGID=1000
-
-# Install system dependencies
+# Installation des dépendances système
 RUN apt-get update && apt-get install -y \
     git \
     curl \
@@ -16,45 +13,33 @@ RUN apt-get update && apt-get install -y \
     nodejs \
     npm
 
-# Install PHP extensions
+# Installation des extensions PHP
 RUN docker-php-ext-install pdo_mysql mbstring exif pcntl bcmath gd
 
-# Install Composer
+# Installation de Composer
 COPY --from=composer:latest /usr/bin/composer /usr/bin/composer
 
-# Create system user to run Composer and Artisan Commands
-RUN groupadd -g $PGID laravel && \
-    useradd -u $PUID -g laravel -m laravel
+WORKDIR /var/www/html
 
-# Set working directory
-WORKDIR /var/www
+# Copie des fichiers du projet
+COPY . .
 
-# Copy composer files first for better caching
-COPY composer.json composer.lock ./
-RUN composer install --no-scripts --no-autoloader --no-interaction
+# Installation des dépendances PHP
+COPY composer.json ./
+RUN composer install --no-interaction --no-dev --optimize-autoloader
 
-# Copy package.json for npm
-COPY package.json package-lock.json ./
+# Configuration des permissions
+RUN chown -R www-data:www-data /var/www/html/storage /var/www/html/bootstrap/cache
+
+# Étape 2: Build des assets frontend
+FROM node:20-alpine
+WORKDIR /app
+COPY package*.json ./
 RUN npm install
-
-# Copy the rest of the application code
-COPY --chown=laravel:laravel . .
-
-# Generate optimized autoload files
-RUN composer dump-autoload --optimize
-
-# Build frontend assets
+COPY . .
 RUN npm run build
 
-# Set permissions
-RUN chown -R laravel:laravel \
-    /var/www/storage \
-    /var/www/bootstrap/cache \
-    && chmod -R 775 /var/www/storage /var/www/bootstrap/cache
-
-# Change current user
-USER laravel
-
-# Expose port 9000 and start php-fpm server
+# Exposition du port
 EXPOSE 9000
+
 CMD ["php-fpm"]
