@@ -22,8 +22,8 @@
         <meta property="twitter:image" content="{{ asset('assets/images/logo-full.svg') }}">
 
         <!-- Favicon -->
-        <link rel="icon" type="image/svg+xml" href="{{ asset('assets/images/logo-full.svg') }}">
-        <link rel="apple-touch-icon" href="{{ asset('assets/images/logo-full.svg') }}">
+        <link rel="icon" type="image/svg+xml" href="{{ asset('assets/images/logo.svg') }}">
+        <link rel="apple-touch-icon" href="{{ asset('assets/images/logo.svg') }}">
 
         {{-- Inline script to detect system dark mode preference and apply it immediately --}}
         <script>
