@@ -4,6 +4,7 @@
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
 
+
         <meta name="title" content="Todo App - Gérez vos tâches efficacement">
         <meta name="description" content="Application de gestion de tâches moderne construite avec Laravel et React">
 
