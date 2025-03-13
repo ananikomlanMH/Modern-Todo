@@ -1,16 +1,10 @@
-# Étape 1: Build des assets frontend
-FROM node:20-alpine AS frontend
-WORKDIR /app
-COPY package*.json ./
-RUN npm install
-COPY . .
-RUN npm run build
+FROM php:8.3-fpm
 
-# Étape 2: Application PHP
-FROM php:8.2-fpm AS app
-WORKDIR /var/www/html
+# Arguments defined in docker-compose.yml
+ARG PUID=1000
+ARG PGID=1000
 
-# Installation des dépendances système
+# Install system dependencies
 RUN apt-get update && apt-get install -y \
     git \
     curl \
@@ -19,36 +13,48 @@ RUN apt-get update && apt-get install -y \
     libxml2-dev \
     zip \
     unzip \
-    && rm -rf /var/lib/apt/lists/*
+    nodejs \
+    npm
 
-# Installation des extensions PHP
+# Install PHP extensions
 RUN docker-php-ext-install pdo_mysql mbstring exif pcntl bcmath gd
 
-# Installation de Composer
+# Install Composer
 COPY --from=composer:latest /usr/bin/composer /usr/bin/composer
 
-# Copie des fichiers du projet
-COPY . .
-COPY --from=frontend /app/public/build ./public/build
+# Create system user to run Composer and Artisan Commands
+RUN groupadd -g $PGID laravel && \
+    useradd -u $PUID -g laravel -m laravel
 
-# Installation des dépendances PHP
-RUN composer install --no-interaction --no-dev --optimize-autoloader
-RUN composer require laravel/pail --dev
+# Set working directory
+WORKDIR /var/www
 
-# Configuration des permissions
-RUN chown -R www-data:www-data /var/www/html/storage /var/www/html/bootstrap/cache
+# Copy composer files first for better caching
+COPY composer.json composer.lock ./
+RUN composer install --no-scripts --no-autoloader --no-interaction
 
-# Optimisation pour la production
-RUN php artisan config:cache \
-    && php artisan route:cache \
-    && php artisan view:cache
+# Copy package.json for npm
+COPY package.json package-lock.json ./
+RUN npm install
 
-# Configuration du PHP-FPM
-COPY docker/php/php.ini /usr/local/etc/php/conf.d/app.ini
+# Copy the rest of the application code
+COPY --chown=laravel:laravel . .
 
-# Healthcheck
-HEALTHCHECK --interval=30s --timeout=3s --retries=3 \
-    CMD php artisan health:check || exit 1
+# Generate optimized autoload files
+RUN composer dump-autoload --optimize
 
+# Build frontend assets
+RUN npm run build
+
+# Set permissions
+RUN chown -R laravel:laravel \
+    /var/www/storage \
+    /var/www/bootstrap/cache \
+    && chmod -R 775 /var/www/storage /var/www/bootstrap/cache
+
+# Change current user
+USER laravel
+
+# Expose port 9000 and start php-fpm server
 EXPOSE 9000
 CMD ["php-fpm"]
