@@ -44,4 +44,14 @@ export interface User {
     tags?: Tag[];
 }
 
+export interface TaskForm {
+    title: string;
+    description: string;
+    status: Task['status'];
+    priority: Task['priority'];
+    due_date: DateValue | null;
+    category_ids: number[];
+    tag_ids: number[];
+}
+
 export type BreadcrumbItemType = BreadcrumbItem;

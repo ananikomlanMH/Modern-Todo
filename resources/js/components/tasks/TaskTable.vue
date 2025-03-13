@@ -9,6 +9,7 @@ import {
   DropdownMenuTrigger,
 } from '@/components/ui/dropdown-menu';
 import { MoreVertical, Pencil, Trash2 } from 'lucide-vue-next';
+import { getStatusBadgeVariant, getPriorityBadgeVariant, getStatusLabel, getPriorityLabel } from '@/utils/taskUtils';
 
 const props = defineProps<{
   tasks: any[];
@@ -35,13 +36,13 @@ const emit = defineEmits<{
       <TableRow v-for="task in tasks" :key="task.id" class="group">
         <TableCell>{{ task.title }}</TableCell>
         <TableCell>
-          <Badge :variant="task.status === 'completed' ? 'success' : 'default'">
-            {{ task.status }}
+          <Badge :variant="getStatusBadgeVariant(task.status)">
+            {{ getStatusLabel(task.status) }}
           </Badge>
         </TableCell>
         <TableCell>
-          <Badge :variant="task.priority === 'high' ? 'destructive' : 'secondary'">
-            {{ task.priority }}
+          <Badge :variant="getPriorityBadgeVariant(task.priority)">
+            {{ getPriorityLabel(task.priority) }}
           </Badge>
         </TableCell>
         <TableCell>

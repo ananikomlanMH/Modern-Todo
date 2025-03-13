@@ -40,7 +40,14 @@ const df = new DateFormatter('fr-FR', { dateStyle: 'long' });
       </SheetHeader>
       <form @submit.prevent="emit('submit')" class="space-y-4 mt-4">
         <div>
-          <Input v-model="form.title" placeholder="Titre" />
+          <Input 
+            v-model="form.title" 
+            placeholder="Titre"
+            :class="{ 'border-red-500': form.errors.title }"
+          />
+          <p v-if="form.errors.title" class="text-sm text-red-500 mt-1">
+            {{ form.errors.title }}
+          </p>
         </div>
         <div>
           <Textarea v-model="form.description" placeholder="Description" />
@@ -77,6 +84,7 @@ const df = new DateFormatter('fr-FR', { dateStyle: 'long' });
                 :class="cn(
                   'w-full justify-start text-left font-normal',
                   !form.due_date && 'text-muted-foreground',
+                  form.errors.due_date && 'border-red-500'
                 )"
               >
                 <CalendarIcon class="mr-2 h-4 w-4" />
@@ -89,6 +97,9 @@ const df = new DateFormatter('fr-FR', { dateStyle: 'long' });
               <Calendar v-model="form.due_date" initial-focus />
             </PopoverContent>
           </Popover>
+          <p v-if="form.errors.due_date" class="text-sm text-red-500 mt-1">
+            {{ form.errors.due_date }}
+          </p>
         </div>
         <Button type="submit" :disabled="form.processing">
           {{ isEditing ? 'Modifier' : 'Créer' }}

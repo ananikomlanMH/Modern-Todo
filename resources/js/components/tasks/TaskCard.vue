@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
+import { getStatusBadgeVariant, getPriorityBadgeVariant, getStatusLabel, getPriorityLabel } from '@/utils/taskUtils';
 
 defineProps<{
   task: any;
@@ -15,11 +16,11 @@ defineProps<{
     <CardContent>
       <p class="mb-4">{{ task.description }}</p>
       <div class="flex gap-2 flex-wrap">
-        <Badge :variant="task.status === 'completed' ? 'success' : 'default'">
-          {{ task.status }}
+        <Badge :variant="getStatusBadgeVariant(task.status)">
+          {{ getStatusLabel(task.status) }}
         </Badge>
-        <Badge :variant="task.priority === 'high' ? 'destructive' : 'secondary'">
-          {{ task.priority }}
+        <Badge :variant="getPriorityBadgeVariant(task.priority)">
+          {{ getPriorityLabel(task.priority) }}
         </Badge>
         <Badge variant="outline" v-if="task.due_date">
           {{ new Date(task.due_date).toLocaleDateString('fr-FR') }}
