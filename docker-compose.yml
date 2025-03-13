@@ -3,6 +3,9 @@ services:
     build:
       context: .
       dockerfile: Dockerfile
+      args:
+          PUID: 1000
+          PGID: 1000
     image: anani17/todo-app:latest
     volumes:
       - .:/var/www/html
