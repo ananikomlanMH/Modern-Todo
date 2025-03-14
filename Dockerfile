@@ -26,7 +26,7 @@ COPY . .
 
 # Installation des dépendances PHP
 COPY composer.json ./
-RUN composer install --no-interaction --no-dev --optimize-autoloader
+RUN composer install --no-interaction --optimize-autoloader
 
 # Configuration des permissions
 RUN chown -R www-data:www-data /var/www/html/storage /var/www/html/bootstrap/cache
