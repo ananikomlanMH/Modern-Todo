@@ -9,6 +9,7 @@ import { Popover, PopoverContent, PopoverTrigger } from '@/components/ui/popover
 import { Calendar as CalendarIcon } from 'lucide-vue-next';
 import { DateFormatter, getLocalTimeZone } from '@internationalized/date';
 import { cn } from '@/utils';
+import { taskStatuses, taskPriorities } from '@/constants/task';
 
 defineProps<{
   form: any;
@@ -26,29 +27,11 @@ const emit = defineEmits<{
 
 const df = new DateFormatter('fr-FR', { dateStyle: 'long' });
 
-// Définition des statuts avec leurs icônes et labels
-const taskStatuses = {
-    pending: { icon: '🕒', label: 'Pending', class: 'bg-gray-100' },
-    in_progress: { icon: '▶️', label: 'In Progress', class: 'bg-blue-100' },
-    completed: { icon: '✅', label: 'Completed', class: 'bg-green-100' },
-    cancelled: { icon: '❌', label: 'Cancelled', class: 'bg-red-100' }
-};
-
-// Définition des priorités avec leurs couleurs et labels
-const taskPriorities = {
-    low: { icon: '🟢', label: 'Low', class: 'text-green-500' },
-    medium: { icon: '🟡', label: 'Medium', class: 'text-yellow-500' },
-    high: { icon: '🟠', label: 'High', class: 'text-orange-500' },
-    urgent: { icon: '🔴', label: 'Urgent', class: 'text-red-500' }
-};
-
 </script>
 
 <template>
   <Sheet :open="open" @update:open="(val) => emit('update:open', val)">
-    <SheetTrigger as-child>
-      <Button @click="emit('newTask')">New Task</Button>
-    </SheetTrigger>
+    
     <SheetContent>
       <SheetHeader>
         <SheetTitle>{{ isEditing ? 'Edit Task' : 'Create New Task' }}</SheetTitle>
@@ -108,7 +91,7 @@ const taskPriorities = {
                 <CalendarIcon class="mr-2 h-4 w-4" />
                 {{ form.due_date
                   ? df.format(form.due_date.toDate(getLocalTimeZone()))
-                  : "Choisir une date" }}
+                  : "Choose a date" }}
               </Button>
             </PopoverTrigger>
             <PopoverContent class="w-auto p-0">
@@ -119,7 +102,7 @@ const taskPriorities = {
             {{ form.errors.due_date }}
           </p>
         </div>
-        <Button type="submit" :disabled="form.processing">
+        <Button class="w-full" type="submit" :disabled="form.processing">
           {{ isEditing ? 'Edit' : 'Create' }}
         </Button>
       </form>

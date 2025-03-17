@@ -1,10 +1,12 @@
+import type { TaskStatus, TaskPriority } from '@/constants/task';
+
 export interface Task {
     id: number
     user_id: number
     title: string
     description: string | null
-    status: 'pending' | 'in_progress' | 'completed' | 'cancelled'
-    priority: 'low' | 'medium' | 'high' | 'urgent'
+    status: TaskStatus
+    priority: TaskPriority
     due_date: string | null
     completed_at: string | null
     created_at: string
@@ -15,6 +17,8 @@ export interface Task {
     subtasks?: Subtask[]
     attachments?: Attachment[]
     reminders?: Reminder[]
+    category_ids: number[]
+    tag_ids: number[]
 }
 
 export interface Category {

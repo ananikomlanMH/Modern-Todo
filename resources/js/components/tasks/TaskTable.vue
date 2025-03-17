@@ -10,9 +10,11 @@ import {
 } from '@/components/ui/dropdown-menu';
 import { MoreVertical, Pencil, Trash2 } from 'lucide-vue-next';
 import { getStatusBadgeVariant, getPriorityBadgeVariant, getStatusLabel, getPriorityLabel } from '@/utils/taskUtils';
+import { taskStatuses, taskPriorities } from '@/constants/task';
+import type { Task } from '@/types/model';
 
 defineProps<{
-  tasks: any[];
+  tasks: Task[];
 }>();
 
 const emit = defineEmits<{
@@ -61,11 +63,11 @@ const emit = defineEmits<{
             <DropdownMenuContent align="end" class="w-[160px]">
               <DropdownMenuItem @click="emit('edit', task)">
                 <Pencil class="mr-2 h-4 w-4" />
-                Modifier
+                Edit
               </DropdownMenuItem>
               <DropdownMenuItem @click="emit('delete', task)" class="text-destructive">
                 <Trash2 class="mr-2 h-4 w-4" />
-                Supprimer
+                Delete
               </DropdownMenuItem>
             </DropdownMenuContent>
           </DropdownMenu>
