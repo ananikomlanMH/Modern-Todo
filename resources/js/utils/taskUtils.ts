@@ -29,13 +29,13 @@ export const getPriorityBadgeVariant = (priority: string) => {
 export const getStatusLabel = (status: string) => {
   switch (status) {
     case 'completed':
-      return 'Terminé';
+      return 'Completed';
     case 'in_progress':
-      return 'En cours';
+      return 'In Progress';
     case 'cancelled':
-      return 'Annulé';
+      return 'Cancelled';
     case 'pending':
-      return 'En attente';
+      return 'Pending';
     default:
       return status;
   }
@@ -46,11 +46,11 @@ export const getPriorityLabel = (priority: string) => {
     case 'urgent':
       return 'Urgent';
     case 'high':
-      return 'Haute';
+      return 'High';
     case 'medium':
-      return 'Moyenne';
+      return 'Medium';
     case 'low':
-      return 'Basse';
+      return 'Low';
     default:
       return priority;
   }

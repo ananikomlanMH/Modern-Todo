@@ -29,20 +29,20 @@ const df = new DateFormatter('fr-FR', { dateStyle: 'long' });
 <template>
   <Sheet :open="open" @update:open="(val) => emit('update:open', val)">
     <SheetTrigger as-child>
-      <Button>Nouvelle tâche</Button>
+      <Button>New Task</Button>
     </SheetTrigger>
     <SheetContent>
       <SheetHeader>
-        <SheetTitle>{{ isEditing ? 'Modifier la tâche' : 'Créer une nouvelle tâche' }}</SheetTitle>
+        <SheetTitle>{{ isEditing ? 'Edit Task' : 'Create New Task' }}</SheetTitle>
         <SheetDescription>
-          {{ isEditing ? 'Modifier les détails de la tâche' : 'Ajouter une nouvelle tâche à votre liste' }}
+          {{ isEditing ? 'Edit the details of the task' : 'Add a new task to your list' }}
         </SheetDescription>
       </SheetHeader>
       <form @submit.prevent="emit('submit')" class="space-y-4 mt-4">
         <div>
           <Input 
             v-model="form.title" 
-            placeholder="Titre"
+            placeholder="Title"
             :class="{ 'border-red-500': form.errors.title }"
           />
           <p v-if="form.errors.title" class="text-sm text-red-500 mt-1">
@@ -55,7 +55,7 @@ const df = new DateFormatter('fr-FR', { dateStyle: 'long' });
         <div>
           <Select v-model="form.status">
             <SelectTrigger>
-              <SelectValue placeholder="Statut" />
+              <SelectValue placeholder="Status" />
             </SelectTrigger>
             <SelectContent>
               <SelectItem v-for="status in statuses" :key="status" :value="status">
@@ -67,7 +67,7 @@ const df = new DateFormatter('fr-FR', { dateStyle: 'long' });
         <div>
           <Select v-model="form.priority">
             <SelectTrigger>
-              <SelectValue placeholder="Priorité" />
+              <SelectValue placeholder="Priority" />
             </SelectTrigger>
             <SelectContent>
               <SelectItem v-for="priority in priorities" :key="priority" :value="priority">
@@ -102,7 +102,7 @@ const df = new DateFormatter('fr-FR', { dateStyle: 'long' });
           </p>
         </div>
         <Button type="submit" :disabled="form.processing">
-          {{ isEditing ? 'Modifier' : 'Créer' }}
+          {{ isEditing ? 'Edit' : 'Create' }}
         </Button>
       </form>
     </SheetContent>

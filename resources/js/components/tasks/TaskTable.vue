@@ -25,10 +25,10 @@ const emit = defineEmits<{
   <Table>
     <TableHeader>
       <TableRow>
-        <TableHead>Titre</TableHead>
+        <TableHead>Task</TableHead>
         <TableHead>Status</TableHead>
-        <TableHead>Priorité</TableHead>
-        <TableHead>Date d'échéance</TableHead>
+        <TableHead>Priority</TableHead>
+        <TableHead>Due Date</TableHead>
         <TableHead class="w-[50px]">Actions</TableHead>
       </TableRow>
     </TableHeader>
