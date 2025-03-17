@@ -51,7 +51,7 @@ export class TaskService {
           'success'
         );
       },
-      onError: (errors) => {
+      onError: () => {
         notify(
           'Erreur de validation',
           'Veuillez vérifier les champs du formulaire',
@@ -77,7 +77,7 @@ export class TaskService {
           'success'
         );
       },
-      onError: (errors) => {
+      onError: () => {
         notify(
           'Erreur de validation',
           'Veuillez vérifier les champs du formulaire',

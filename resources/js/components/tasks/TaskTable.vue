@@ -11,7 +11,7 @@ import {
 import { MoreVertical, Pencil, Trash2 } from 'lucide-vue-next';
 import { getStatusBadgeVariant, getPriorityBadgeVariant, getStatusLabel, getPriorityLabel } from '@/utils/taskUtils';
 
-const props = defineProps<{
+defineProps<{
   tasks: any[];
 }>();
 
@@ -73,4 +73,4 @@ const emit = defineEmits<{
       </TableRow>
     </TableBody>
   </Table>
-</template> 
+</template>

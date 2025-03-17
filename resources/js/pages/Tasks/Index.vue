@@ -6,12 +6,11 @@ import { Button } from '@/components/ui/button';
 import AppLayout from '@/layouts/AppLayout.vue';
 import { TaskService } from '@/services/taskService';
 import { type BreadcrumbItem } from '@/types';
-import { type TaskForm } from '@/types/index';
 import { type Task } from '@/types/model';
 import { Head, useForm } from '@inertiajs/vue3';
 import { ref } from 'vue';
 
-const props = defineProps<{
+defineProps<{
     tasks: Task[];
 }>();
 

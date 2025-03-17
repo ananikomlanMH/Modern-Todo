@@ -7,10 +7,10 @@ import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@
 import { Calendar } from '@/components/ui/calendar';
 import { Popover, PopoverContent, PopoverTrigger } from '@/components/ui/popover';
 import { Calendar as CalendarIcon } from 'lucide-vue-next';
-import { DateFormatter, type DateValue, getLocalTimeZone } from '@internationalized/date';
+import { DateFormatter, getLocalTimeZone } from '@internationalized/date';
 import { cn } from '@/utils';
 
-const props = defineProps<{
+defineProps<{
   form: any;
   isEditing: boolean;
   open: boolean;
@@ -43,8 +43,8 @@ const df = new DateFormatter('fr-FR', { dateStyle: 'long' });
       </SheetHeader>
       <form @submit.prevent="emit('submit')" class="space-y-4 mt-4">
         <div>
-          <Input 
-            v-model="form.title" 
+          <Input
+            v-model="form.title"
             placeholder="Title"
             :class="{ 'border-red-500': form.errors.title }"
           />
@@ -110,4 +110,4 @@ const df = new DateFormatter('fr-FR', { dateStyle: 'long' });
       </form>
     </SheetContent>
   </Sheet>
-</template> 
+</template>

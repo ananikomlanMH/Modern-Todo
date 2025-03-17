@@ -1,6 +1,5 @@
 <script setup lang="ts">
 import { Link } from '@inertiajs/vue3';
-import AppLogo from '@/components/AppLogo.vue';
 import AppLogoFull from '@/components/AppLogoFull.vue';
 
 defineProps<{
