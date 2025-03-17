@@ -4,10 +4,22 @@
 
 # Modern Todo Application
 
+## Quick Links
+- 🌐 [Live Preview](https://modern-todo-main-twjvdo.laravel.cloud/login)
+- 🐳 [Docker Hub Repository](https://hub.docker.com/r/anani17/todo-app)
+
 ## About
 
 A modern, feature-rich task management application built with Laravel and React. Organize your tasks with categories, tags, subtasks, and track your productivity efficiently.
 
+## Live Demo
+
+Try out the application at our staging environment:
+- URL: [https://modern-todo-main-twjvdo.laravel.cloud/login](https://modern-todo-main-twjvdo.laravel.cloud/login)
+- Demo Account:
+    - Email: demo@example.com
+    - Password: password
+  
 ## Features
 
 - **Task Management**
@@ -18,28 +30,28 @@ A modern, feature-rich task management application built with Laravel and React.
   - Bulk actions for multiple tasks
   - Task filtering and sorting
 
-- **Organization**
+- **Organization (coming soon)**
   - Categorize tasks with custom categories
   - Tag system for flexible organization
   - Create subtasks for complex tasks
   - Task dependencies tracking
   - Project grouping
 
-- **User Experience**
+- **User Experience (coming soon)**
   - Real-time updates with WebSocket
   - Responsive design for all devices
   - Dark/Light theme support
   - Drag and drop interface
   - Keyboard shortcuts
 
-- **Team Collaboration**
+- **Team Collaboration (coming soon)**
   - Task sharing and assignment
   - Team workspaces
   - Activity timeline
   - Comments and discussions
   - Role-based permissions
 
-- **Productivity Features**
+- **Productivity Features (coming soon)**
   - Calendar integration
   - Progress tracking
   - Performance analytics
@@ -58,7 +70,7 @@ A modern, feature-rich task management application built with Laravel and React.
 - Pest PHP for testing
 
 ### Frontend
-- React 18
+- VueJs 3
 - TypeScript
 - Tailwind CSS
 - Shadcn UI
@@ -78,7 +90,7 @@ A modern, feature-rich task management application built with Laravel and React.
 
 1. Clone the repository:
 ```bash
-git clone https://github.com/yourusername/todo-app
+git clone https://github.com/ananikomlanMH/Modern-Todo
 cd todo-app
 ```
 
