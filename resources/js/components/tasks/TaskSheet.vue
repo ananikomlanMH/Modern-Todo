@@ -21,15 +21,18 @@ const props = defineProps<{
 const emit = defineEmits<{
   'update:open': [value: boolean];
   'submit': [];
+  'newTask': [];
 }>();
 
 const df = new DateFormatter('fr-FR', { dateStyle: 'long' });
+
+
 </script>
 
 <template>
   <Sheet :open="open" @update:open="(val) => emit('update:open', val)">
     <SheetTrigger as-child>
-      <Button>New Task</Button>
+      <Button @click="emit('newTask')">New Task</Button>
     </SheetTrigger>
     <SheetContent>
       <SheetHeader>

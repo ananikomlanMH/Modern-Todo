@@ -1,4 +1,3 @@
-# Étape 1: Application PHP
 FROM php:8.2-fpm
 
 # Installation des dépendances système
@@ -28,16 +27,11 @@ COPY . .
 COPY composer.json ./
 RUN composer install --no-interaction --optimize-autoloader
 
+# Installation des dépendances Node et build
+RUN npm install && npm run build
+
 # Configuration des permissions
 RUN chown -R www-data:www-data /var/www/html/storage /var/www/html/bootstrap/cache
-
-# Étape 2: Build des assets frontend
-FROM node:20-alpine
-WORKDIR /app
-COPY package*.json ./
-RUN npm install
-COPY . .
-RUN npm run build
 
 # Exposition du port
 EXPOSE 9000

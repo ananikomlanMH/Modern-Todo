@@ -70,6 +70,7 @@ Try out the application at our staging environment:
 - Pest PHP for testing
 
 ### Frontend
+- Laravel 12
 - VueJs 3
 - TypeScript
 - Tailwind CSS

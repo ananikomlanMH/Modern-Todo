@@ -79,6 +79,14 @@ const editTask = (task: Task) => {
 const deleteTask = (task: Task) => {
     TaskService.deleteTask(task.id);
 };
+
+const resetTaskForm = () => {
+    form.reset();
+    isEditing.value = false;
+    currentTask.value = null;
+    isSheetOpen.value = true;
+};
+
 </script>
 
 <template>
@@ -99,6 +107,7 @@ const deleteTask = (task: Task) => {
                     :statuses="statuses"
                     :priorities="priorities"
                     @submit="handleSubmit"
+                    @new-task="resetTaskForm"
                 />
             </div>
 
