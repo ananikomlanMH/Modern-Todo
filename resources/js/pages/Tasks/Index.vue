@@ -26,8 +26,25 @@ const form = useForm({
     tag_ids: [],
 });
 
-const statuses = ['pending', 'in_progress', 'completed', 'cancelled'];
-const priorities = ['low', 'medium', 'high', 'urgent'];
+// Définition des statuts avec leurs icônes et labels
+const taskStatuses = {
+    pending: { icon: '🕒', label: 'Pending', class: 'bg-gray-100' },
+    in_progress: { icon: '▶️', label: 'In Progress', class: 'bg-blue-100' },
+    completed: { icon: '✅', label: 'Completed', class: 'bg-green-100' },
+    cancelled: { icon: '❌', label: 'Cancelled', class: 'bg-red-100' }
+};
+
+// Définition des priorités avec leurs couleurs et labels
+const taskPriorities = {
+    low: { icon: '🟢', label: 'Low', class: 'text-green-500' },
+    medium: { icon: '🟡', label: 'Medium', class: 'text-yellow-500' },
+    high: { icon: '🟠', label: 'High', class: 'text-orange-500' },
+    urgent: { icon: '🔴', label: 'Urgent', class: 'text-red-500' }
+};
+
+// Ajout aux données existantes
+const statuses = Object.keys(taskStatuses);
+const priorities = Object.keys(taskPriorities);
 
 const isEditing = ref(false);
 const currentTask = ref<Task | null>(null);

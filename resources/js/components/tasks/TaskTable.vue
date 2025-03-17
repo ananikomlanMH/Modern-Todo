@@ -36,14 +36,14 @@ const emit = defineEmits<{
       <TableRow v-for="task in tasks" :key="task.id" class="group">
         <TableCell>{{ task.title }}</TableCell>
         <TableCell>
-          <Badge :variant="getStatusBadgeVariant(task.status)">
-            {{ getStatusLabel(task.status) }}
-          </Badge>
+          <span :class="taskStatuses[task.status].class" class="px-2 py-1 rounded">
+            {{ taskStatuses[task.status].icon }} {{ taskStatuses[task.status].label }}
+          </span>
         </TableCell>
         <TableCell>
-          <Badge :variant="getPriorityBadgeVariant(task.priority)">
-            {{ getPriorityLabel(task.priority) }}
-          </Badge>
+          <span :class="taskPriorities[task.priority].class">
+            {{ taskPriorities[task.priority].icon }} {{ taskPriorities[task.priority].label }}
+          </span>
         </TableCell>
         <TableCell>
           <Badge variant="outline" v-if="task.due_date">
